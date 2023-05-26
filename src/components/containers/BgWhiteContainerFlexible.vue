@@ -80,12 +80,48 @@ const handleDelete = async () => {
     await Member.getById(physicalPersonStore.formData.id);
 
     const res = await Member.deleteById(physicalPersonStore.formData.id);
-    if (res.status == 204)
-      return Swal.fire({
+    if (res.status == 204) {
+      Swal.fire({
         title: 'Nice!',
         text: `User with the ID "${physicalPersonStore.formData.id}" has been successfully deleted.`,
         icon: 'success',
       });
+      Object.assign(physicalPersonStore.formData, {
+        id: 0,
+        intermediate: '',
+        firstName: '',
+        lastName: '',
+        birthDate: '',
+        gender: '',
+        vip: '',
+        country: '',
+        cin: '',
+        deliveryDate: '',
+        deliveryLocation: '',
+        cinValidUntil: '',
+        nationality: '',
+        moroccanNationality: '',
+        fullFatherName: '',
+        fullMotherName: '',
+        profession: {
+          title: '',
+        },
+        correspondance: [
+          {
+            addressType: '',
+            number: '',
+            way: '',
+            complement: '',
+            city: '',
+            postalCode: '',
+            emailAddress: '',
+            phoneNumber: '',
+            fixNumber: '',
+            faxNumber: '',
+          },
+        ],
+      });
+    }
   } catch (err) {
     if (isAxiosError(err)) {
       if (err.response) {

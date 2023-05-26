@@ -1,7 +1,7 @@
-import Api from '@/services/api';
+import axios from 'axios';
 
-const api = new Api({
-  basePath: 'http://localhost:1337/api',
+const api = axios.create({
+  baseURL: 'http://localhost:1337/api',
 });
 
 export default api;

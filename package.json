@@ -22,7 +22,6 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/vue-fontawesome": "^3.0.3",
     "axios": "^1.4.0",
-    "download": "^8.0.0",
     "pinia": "^2.0.35",
     "sweetalert2": "^11.7.5",
     "vue": "^3.2.47",
@@ -30,8 +29,6 @@
     "zod": "^3.21.4"
   },
   "devDependencies": {
-    "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
-    "@esbuild-plugins/node-modules-polyfill": "^0.2.2",
     "@rushstack/eslint-patch": "^1.2.0",
     "@tsconfig/node18": "^2.0.0",
     "@types/download": "^8.0.2",

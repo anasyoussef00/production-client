@@ -1,7 +1,5 @@
 import api from '@/api';
-import type { IModel } from '../types';
 import type { ICorrespondance, IMember, IProfession } from './types';
-import type { EGender, TYesOrNo } from '@/types';
 import { isAxiosError, type AxiosResponse } from 'axios';
 
 export default class Member implements IMember {
@@ -47,7 +45,7 @@ export default class Member implements IMember {
 
   static async getById(id: number): Promise<IMember | undefined> {
     try {
-      const data = await api.get<IMember>(`/members/member/${id}`);
+      const { data } = await api.get<IMember>(`/members/member/${id}`);
       // if (!foundMember)
       //   return Promise.reject(new Error(`Couldn't find a member with the given id: ${id}`));
       // console.log(foundMember);
@@ -61,7 +59,7 @@ export default class Member implements IMember {
 
   static async updateById(id: number, member: IMember): Promise<IMember | undefined> {
     try {
-      const data = await api.put<IMember>(`/members/member/${id}`, member);
+      const { data } = await api.put<IMember>(`/members/member/${id}`, member);
       return data;
     } catch (err) {
       return Promise.reject(err);
@@ -70,7 +68,7 @@ export default class Member implements IMember {
 
   static async store(member: IMember): Promise<IMember | undefined> {
     try {
-      const data = await api.post<IMember>('/members/create', member);
+      const { data } = await api.post<IMember>('/members/create', member);
       return data;
     } catch (err) {
       return Promise.reject(err);
