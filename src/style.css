@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Montserrat', sans-serif;
+  }
+}
+
+@layer components {
+  .outlined-floating-label-inp {
+    @apply block py-[calc(theme(spacing.2)-1px)] px-[calc(theme(spacing.3)-1px)] border border-gray-200 appearance-none w-full text-sm text-gray-900 bg-white rounded-lg focus:border-teal-500 focus:outline-none focus:ring-teal-500 placeholder-transparent focus:placeholder:text-gray-400;
+  }
+
+  .outlined-floating-label-label {
+    @apply absolute text-xs text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-teal-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 peer-focus:text-sm left-1;
+  }
+
+  .btn-bg-teal-500 {
+    @apply bg-teal-500 hover:bg-teal-400 text-white rounded-md shadow-md hover:shadow-lg w-full py-[calc(theme(spacing.2)-3px)] px-[calc(theme(spacing.3)-1px)] disabled:shadow-none disabled:bg-teal-300 disabled:cursor-not-allowed;
+  }
+
+  .btn-bg-orange-500 {
+    @apply bg-orange-500 hover:bg-orange-400 text-white rounded-md shadow-md hover:shadow-lg w-full py-[calc(theme(spacing.2)-3px)] px-[calc(theme(spacing.3)-1px)];
+  }
+
+  .btn-bg-slate-500 {
+    @apply bg-slate-500 hover:bg-slate-400 text-white rounded-md shadow-md hover:shadow-lg w-full py-[calc(theme(spacing.2)-3px)] px-[calc(theme(spacing.3)-1px)] disabled:shadow-none disabled:bg-slate-300 disabled:cursor-not-allowed;
+  }
+
+  .btn-bg-red-500 {
+    @apply bg-red-500 hover:bg-red-400 text-white rounded-md shadow-md hover:shadow-lg w-full py-[calc(theme(spacing.2)-3px)] px-[calc(theme(spacing.3)-1px)] disabled:shadow-none disabled:bg-red-300 disabled:cursor-not-allowed;
+  }
+
+  .text-slate-700-title {
+    @apply text-slate-700 font-semibold text-lg;
+  }
+}
