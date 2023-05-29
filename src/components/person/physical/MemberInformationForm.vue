@@ -135,7 +135,7 @@ const dateChanged = () => console.log(physicalPersonStore.formData.birthDate);
               class="my-auto transform scale-100 accent-teal-500"
               type="radio"
               name="vip"
-              value="Y"
+              :value="true"
             />
             <div class="px-2 font-medium text-sm">Oui</div>
           </label>
@@ -146,7 +146,7 @@ const dateChanged = () => console.log(physicalPersonStore.formData.birthDate);
               class="my-auto transform scale-100 accent-teal-500"
               type="radio"
               name="vip"
-              value="Y"
+              :value="false"
             />
             <div class="px-2 font-medium text-sm">Non</div>
           </label>
@@ -266,8 +266,8 @@ const dateChanged = () => console.log(physicalPersonStore.formData.birthDate);
         id="moroccan-nationality-sel"
       >
         <option value="" selected disabled>Please select an answer</option>
-        <option value="Y">Oui</option>
-        <option value="N">Non</option>
+        <option :value="true">Oui</option>
+        <option :value="false">Non</option>
       </select>
       <label class="outlined-floating-label-label" for="moroccan-nationality-sel"
         >Nationalité Marocaine</label

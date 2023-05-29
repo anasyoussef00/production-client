@@ -12,14 +12,10 @@ defineProps<{
 </script> -->
 
 <script setup lang="ts">
-import api from '@/api';
-import type { IMember } from '@/models/member/types';
-import Api from '@/services/api';
 import Member from '@/models/member';
-import { ref } from 'vue';
-import { usePhysicalPersonStore } from '@/stores/person/physical';
+import {usePhysicalPersonStore} from '@/stores/person/physical';
 import Swal from 'sweetalert2';
-import { isAxiosError } from 'axios';
+import {isAxiosError} from 'axios';
 
 defineProps<{
   title: string;
@@ -33,18 +29,20 @@ const handleGetById = async () => {
 
     physicalPersonStore.fillMemberData(member!);
   } catch (err) {
-    if (isAxiosError(err)) {
-      if (err.response) {
-        if (err.response.status == 404) {
-          return Swal.fire({
-            title: 'Oops...!',
-            text: `Couldn't find a member with the given id: ${physicalPersonStore.formData.id}`,
-            icon: 'error',
-          });
-        }
-      }
+    if (isAxiosError(err) && err.response && err.response.status == 404) {
+      return Swal.fire({
+        title: 'Oops...!',
+        text: `Couldn't find a member with the given id: ${physicalPersonStore.formData.id}`,
+        icon: 'error',
+      });
+    } else {
+      return Swal.fire({
+        title: 'Oops...!',
+        text: `An error has occurred while trying to fetch for the user with the given id: ${physicalPersonStore.formData.id}`,
+        icon: 'error',
+        toast: true
+      });
     }
-    console.error(err);
   }
 };
 
@@ -148,52 +146,52 @@ const handleDelete = async () => {
       </div>
       <div class="relative flex flex-wrap items-stretch">
         <input
-          v-model="physicalPersonStore.formData.id"
-          class="outlined-floating-label-inp peer [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-          type="number"
-          id="search-by-id-inp"
-          placeholder="e.g. 7777"
-          min="0"
+            v-model="physicalPersonStore.formData.id"
+            class="outlined-floating-label-inp peer [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+            type="number"
+            id="search-by-id-inp"
+            placeholder="e.g. 7777"
+            min="0"
         />
         <label class="outlined-floating-label-label" for="search-by-id-inp">ID</label>
         <span
-          class="z-10 h-full leading-snug font-normal absolute text-center text-slate-400 bg-transparent rounded text-base items-center justify-center w-8 right-0 py-[calc(theme(spacing.2)-1px)]"
+            class="z-10 h-full leading-snug font-normal absolute text-center text-slate-400 bg-transparent rounded text-base items-center justify-center w-8 right-0 py-[calc(theme(spacing.2)-1px)]"
         >
-          <font-awesome-icon icon="fa-solid fa-search" />
+          <font-awesome-icon icon="fa-solid fa-search"/>
         </span>
       </div>
       <button
-        @click="handleGetById"
-        class="btn-bg-slate-500 w-20 h-8 flex items-center justify-between"
-        :disabled="physicalPersonStore.formData.id <= 0"
+          @click="handleGetById"
+          class="btn-bg-slate-500 w-20 h-8 flex items-center justify-between"
+          :disabled="physicalPersonStore.formData.id <= 0"
       >
         Find
-        <font-awesome-icon class="text-sm" icon="fa-solid fa-search" />
+        <font-awesome-icon class="text-sm" icon="fa-solid fa-search"/>
       </button>
       <button
-        @click="handleUpdateOrCreate"
-        class="btn-bg-teal-500 w-44 h-8 flex items-center justify-between"
-        :disabled="physicalPersonStore.formData.id <= 0"
+          @click="handleUpdateOrCreate"
+          class="btn-bg-teal-500 w-44 h-8 flex items-center justify-between"
+          :disabled="physicalPersonStore.formData.id <= 0"
       >
         Update/Create
         <span>
-          <font-awesome-icon class="text-sm" icon="fa-solid fa-pen" />/<font-awesome-icon
+          <font-awesome-icon class="text-sm" icon="fa-solid fa-pen"/>/<font-awesome-icon
             class="text-sm"
             icon="fa-solid fa-plus"
-          />
+        />
         </span>
       </button>
       <button
-        @click="handleDelete"
-        class="btn-bg-red-500 w-24 h-8 flex items-center justify-between"
-        :disabled="physicalPersonStore.formData.id <= 0"
+          @click="handleDelete"
+          class="btn-bg-red-500 w-24 h-8 flex items-center justify-between"
+          :disabled="physicalPersonStore.formData.id <= 0"
       >
         Delete
-        <font-awesome-icon class="text-sm" icon="fa-solid fa-trash" />
+        <font-awesome-icon class="text-sm" icon="fa-solid fa-trash"/>
       </button>
     </div>
     <div
-      class="grid grid-cols-1 lg:grid-cols-2 grid-flow-col grid-rows-2 gap-x-10 divide-x-2 divide-teal-500 divide-solid"
+        class="grid grid-cols-1 lg:grid-cols-2 grid-flow-col grid-rows-2 gap-x-10 divide-x-2 divide-teal-500 divide-solid"
     >
       <slot></slot>
     </div>

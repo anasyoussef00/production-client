@@ -7,14 +7,14 @@ export declare interface IMember {
   lastName: string;
   birthDate: string;
   gender: string;
-  vip: string;
+  vip: boolean;
   country: string;
   cin: string;
   deliveryDate: string;
   deliveryLocation: string;
   cinValidUntil: string;
   nationality: string;
-  moroccanNationality: string;
+  moroccanNationality: boolean;
   fullFatherName: string;
   fullMotherName: string;
   profession: IProfession;
